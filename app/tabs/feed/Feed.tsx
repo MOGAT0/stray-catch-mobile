@@ -5,10 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Cards from '@/components/feed/cards';
 
 const Feed = () => {
-
-// Replaced the previously generic Unsplash image URLs in the 'images' array with specific Unsplash cat photo URLs for all posts.
-// The unique post IDs and original userImage URLs remain unchanged.
-
+ 
 const dummyPost = {
   id: '1',
   userName: 'Sam Jefferson',
@@ -74,7 +71,6 @@ const dummyPost5 = {
   ]
 };
 
-// {to-do} Consolidate these individual objects into a single array for easier iteration if needed later.
 
   return (
     <SafeAreaView style={styles.scrollScreen}>
