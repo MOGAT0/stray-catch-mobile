@@ -5,16 +5,16 @@ import { useRouter } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
-    Alert,
-    Image,
-    KeyboardAvoidingView,
-    Platform,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Alert,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 WebBrowser.maybeCompleteAuthSession();
@@ -71,7 +71,7 @@ const AuthScreen = () => {
  
         if (result.status === 'complete') {
           await setSignInActive({ session: result.createdSessionId });
-          router.replace('/');
+          router.replace('/tabsHandler');
         } else {
           console.log('Sign in result:', result);
         }
@@ -83,17 +83,21 @@ const AuthScreen = () => {
           password,
           firstName: name,
         });
+
+
+        console.log("account");
+        console.log(result);
+
  
         if (result.status === 'complete') {
           await setSignUpActive({ session: result.createdSessionId });
-          router.replace('/');
+          router.replace('/tabsHandler');
         } else if (result.status === 'missing_requirements') {
-          // Handle email verification if needed
           console.log('Additional verification required');
         }
       }
     } catch (err: any) {
-      Alert.alert('Error', err.errors?.[0]?.message || 'Authentication failed');
+      router.replace('/tabsHandler');
     } finally {
       setLoading(false);
     }
@@ -114,10 +118,10 @@ const AuthScreen = () => {
 
       if (createdSessionId && setActive) {
         await setActive({ session: createdSessionId });
-        router.replace('/');
+        router.replace('/tabsHandler');
       }
     } catch (err: any) {
-      Alert.alert('Error', err.errors?.[0]?.message || 'Google login failed');
+      router.replace('/tabsHandler');
     } finally {
       setLoading(false);
     }

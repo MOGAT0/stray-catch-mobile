@@ -1,0 +1,90 @@
+
+import Ionicons from '@react-native-vector-icons/ionicons';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from 'react';
+import { StyleSheet } from 'react-native';
+
+import Feed from './tabs/feed/Feed';
+import Map from './tabs/map/Map';
+import Profile from './tabs/profile/Profile';
+import Snap from './tabs/snap/Snap';
+import Welfare from './tabs/welfare/Welfare';
+
+const FeedPage = ()=>{
+  return <Feed/>;
+}
+
+const MapPage = () => {
+  return <Map/>;
+}
+
+const SnapPage = () => {
+  return <Snap/>;
+}
+
+const WelfarePage = () => {
+  return <Welfare/>;
+}
+
+const ProfilePage = () => {
+  return <Profile/>;
+}
+
+const COLORS = {
+  primary: '#FF6B35',
+  inactive: '#1A1A1A',
+  background: '#FFFFFF',
+  border: '#E0E0E0',
+};
+
+const Tab = createBottomTabNavigator();
+
+const TabsHandler = () => {
+  return (
+    <>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName: any = "help-circle-outline"; 
+
+            if (route.name === "Feed") {
+              iconName = focused ? "newspaper" : "newspaper-outline";
+            } else if (route.name === "Map") {
+              iconName = focused ? "map" : "map-outline";
+            } else if (route.name === "Snap") {
+              iconName = focused ? "camera" : "camera-outline";
+            } else if (route.name === "Welfare") {
+              iconName = focused ? "chatbubbles" : "chatbubbles-outline";
+            } else if (route.name === "Profile") {
+              iconName = focused ? "person" : "person-outline";
+            } 
+
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          headerShown: false,
+          tabBarShowLabel: true,
+
+          tabBarActiveTintColor: COLORS.primary,
+          tabBarInactiveTintColor: COLORS.inactive,
+          tabBarStyle: {
+            backgroundColor: COLORS.background,
+            borderTopColor: COLORS.border,
+            borderTopWidth: 1,
+            elevation: 5,
+            shadowOpacity: 0.1,
+          }
+        })}
+      >
+        <Tab.Screen name="Feed" options={{headerTitle:''}} component={FeedPage} />
+        <Tab.Screen name="Map" options={{headerTitle:''}} component={MapPage} />
+        <Tab.Screen name="Snap" options={{headerTitle:''}} component={SnapPage} />
+        <Tab.Screen name="Welfare" options={{headerTitle:''}} component={WelfarePage} />
+        <Tab.Screen name="Profile" options={{headerTitle:''}} component={ProfilePage} />
+      </Tab.Navigator>
+    </>
+  );
+}
+
+export default TabsHandler;
+
+const styles = StyleSheet.create({});

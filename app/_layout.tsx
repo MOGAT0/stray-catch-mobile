@@ -35,6 +35,11 @@ const RootLayout = () => {
             name="index"
             options={{headerShown: false, title : "Main"}}
           />
+
+          <Stack.Screen
+            name='tabsHandler'
+            options={{headerShown: false, title : ""}}
+          />
         </Stack>
       </ClerkLoaded>
     </ClerkProvider>
